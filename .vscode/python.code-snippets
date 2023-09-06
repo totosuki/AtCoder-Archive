@@ -1,0 +1,37 @@
+{
+  "map(int, input().split())": {
+    "scope": "python",
+    "prefix": "haha",
+    "body": "map(int, input().split())"
+  },
+  "list(map(int, input().split()))": {
+    "scope": "python",
+    "prefix": "jaja",
+    "body": "list(map(int, input().split()))"
+  },
+  "[list(map(int, input().split())) for _ in range()]": {
+    "scope": "python",
+    "prefix": "kaka",
+    "body": "[list(map(int, input().split())) for _ in range($1)]"
+  },
+  "import sys.stdin.buffer.readline": {
+    "scope": "python",
+    "prefix": "lala",
+    "body": "import sys\ninput = sys.stdin.buffer.readline"
+  },
+  "import os, io": {
+    "scope": "python",
+    "prefix": ";a;a",
+    "body": "import os, io\n_f, _nl, _mb = io.BytesIO(), int(), 10**6\ndef input():\n  global _nl\n  p = _f.tell()\n  while not _nl:\n    bd = os.read(0, _mb)\n    _nl = bd.count(b'\\n') + (not bd)\n    _f.seek(0, 2)\n    _f.write(bd)\n  _f.seek(p)\n  _nl -= 1\n  return _f.readline()"
+  },
+  "input().decode().strip()": {
+    "scope": "python",
+    "prefix": "yaya",
+    "body": "input().decode().rstrip()"
+  },
+  "hello_my_name_is_toripppppy": {
+    "scope": "python",
+    "prefix": "[a[a",
+    "body": "def hello_my_name_is_torippppppy_and_this_is_my_first_function_that_can_print_your_original_text_the_name_is_lets_print_the_text_that_specified_at_the_first_argment_of_this_function(text_that_you_want_to_print: str):\n  # your original text that specified at the first argment of this function will print at here\n  print(text_that_you_want_to_print)"
+  }
+}
