@@ -1,0 +1,5 @@
+N, K = map(int, input().split())
+P = list(map(int, input().split()))
+P.sort()
+rslt = sum(P[:K])
+print(rslt)
