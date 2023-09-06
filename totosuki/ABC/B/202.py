@@ -1,0 +1,1 @@
+print(input().translate(str.maketrans("69","96"))[::-1])
