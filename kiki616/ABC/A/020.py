@@ -1,0 +1,1 @@
+print("chokudai" if int(input()) == 2 else "ABC")

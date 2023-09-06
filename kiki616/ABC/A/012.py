@@ -1,0 +1,1 @@
+print(*[str(i[1]) + " " + str(i[0]) for i in [list(map(int,input().split()))]])
