@@ -1,0 +1,1 @@
+print("ABCDE".index(input())+1)
