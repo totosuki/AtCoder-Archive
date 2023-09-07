@@ -1,37 +1,21 @@
-def rotate_array(A):
-  new_A = []
-  for i in range(N):
-    flatten_A = list(itertools.chain.from_iterable(A[::-1]))
-    tmp = []
-    for j in range(i, N*N, N):
-      tmp.append(flatten_A[j])
-    new_A.append(tmp)
-  return new_A
-
-import itertools
+import numpy as np
 
 N = int(input())
-A = []
-B = []
-for _ in range(N):
-  A.append(list(map(int, input().split())))
-for _ in range(N):
-  B.append(list(map(int, input().split())))
+A = [list(map(int, input().split())) for _ in range(N)]
+B = [list(map(int, input().split())) for _ in range(N)]
+
+answer = "No"
 
 for _ in range(4):
   flag = True
-  A_1 = []
-  flatten_A = list(itertools.chain.from_iterable(A))
-  flatten_B = list(itertools.chain.from_iterable(B))
-
-  for a, b in zip(flatten_A, flatten_B):
-    if a == 1 and b == 0:
-      flag = False
-
+  for row in range(N):
+    for col in range(N):
+      if A[row][col] and not B[row][col]:
+        flag = False
+  
   if flag:
-    print("Yes")
-    exit()
+    answer = "Yes"
 
-  A = rotate_array(A)
+  A = list(np.rot90(A))
 
-print("No")
+print(answer)
