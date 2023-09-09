@@ -1,9 +1,12 @@
+from fractions import Fraction
 N = int(input())
-A = list(map(int, input().split()))
-rslt = 0
+print(eval(str(Fraction(1,sum(map(lambda x: Fraction(1, x), list(map(int, input().split()))))))))
 
-for i in range(N):
-  rslt += (1 / A[i])
+print(1/sum(1/int(a)for a in[*open(0)][1].split()))
 
-rslt = 1 / rslt
-print(rslt)
+# N = int(input())
+# A = list(map(int, input().split()))
+# sm = 0
+# for a in A:
+#   sm += 1 / a
+# print(1 / sm)
