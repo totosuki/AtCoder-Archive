@@ -13,3 +13,12 @@ while right - left > 1:
     left = mid
 
 print(f"! {left}")
+
+# Code Golf
+# l=1
+# r=int(input())
+# while r-l>1:
+#  print("?",m:=(l+r)//2)
+#  if input()>"0":r=m
+#  else:l=m
+# print("!",l)
