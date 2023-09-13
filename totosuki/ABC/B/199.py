@@ -1,20 +1,8 @@
-import sys
-input = sys.stdin.buffer.readline
-
 N = int(input())
-A = map(int, input().split())
-B = map(int, input().split())
-cnt = 0
-min_n = 0
-max_n = 1005
+A = list(map(int, input().split()))
+B = list(map(int, input().split()))
 
-for a, b in zip(A, B):
-  if min_n < a:
-    min_n = a
-  if max_n > b:
-    max_n = b
+mx_A = max(A)
+mn_B = min(B)
 
-if min_n > max_n:
-  print(0)
-else:
-  print(max_n - min_n + 1)
+print(0) if mx_A > mn_B else print(mn_B - mx_A + 1)
