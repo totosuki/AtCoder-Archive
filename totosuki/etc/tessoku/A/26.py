@@ -1,4 +1,6 @@
 from math import isqrt
+import sys
+input = sys.stdin.buffer.readline
 
 Q = int(input())
 
