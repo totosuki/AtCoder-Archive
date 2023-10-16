@@ -3,18 +3,18 @@ input = sys.stdin.buffer.readline
 
 N = int(input())
 A = list(map(int, input().split()))
+A.sort(reverse=True)
+
 sm = sum(A)
-X = sm // N
-R = sm % N
+div = sm // N
+mod = sm % div
+
 rslt = 0
 
-A.sort(reverse = True)
-
-for a in A:
-  if R > 0:
-    R -= 1
-    rslt += abs(a - (X+1))
+for i in range(N):
+  if i < mod:
+    rslt += abs(A[i] - (div + 1))
   else:
-    rslt += abs(a - X)
+    rslt += abs(A[i] - div)
 
-print(rslt//2)
+print(rslt // 2)

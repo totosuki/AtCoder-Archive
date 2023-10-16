@@ -1,40 +1,28 @@
-N,M = map(int,input().split())
-player = [i+1 for i in range(N)]
-weak = []
-strong = []
-for i in range(M):
-  y = False
-  a,b = input().split()
-  weak.append(b)
+import os, io
+_f, _nl, _mb = io.BytesIO(), int(), 10**5
+def input():
+  global _nl
+  p = _f.tell()
+  while not _nl:
+    bd = os.read(0, _mb)
+    _nl = bd.count(b'\n') + (not bd)
+    _f.seek(0, 2)
+    _f.write(bd)
+  _f.seek(p)
+  _nl -= 1
+  return _f.readline()
 
-  for l in weak:
-    if l == a:
-      y = True
+N, M = map(int, input().split())
+A = []
+B = []
+saikyo = [True] * N
 
-  if y == False:
-    strong.append(a)
-  
-  for l in strong:
-    if l == b:
-      strong.remove(b)
+exec("a,b=map(int,input().split());A.append(a);B.append(b);"*M)
 
-if len(strong) == 1:
-  print(strong[0])
+for b in B:
+  saikyo[b-1] = False
+
+if sum(saikyo) == 1:
+  print(saikyo.index(True) + 1)
 else:
   print(-1)
-
-# import sys
-# input = sys.stdin.buffer.readline
-
-# N, M = map(int, input().split())
-# data = [list(map(int, input().split())) for _ in range(M)]
-# player = [True] * N
-
-# for i in range(M):
-#   B = data[i][1]
-#   player[B-1] = False
-
-# if player.count(True) == 1:
-#   print(player.index(True) + 1)
-# else:
-#   print(-1)
