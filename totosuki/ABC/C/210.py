@@ -1,24 +1,33 @@
-import sys, collections
+import sys
 input = sys.stdin.buffer.readline
+
+from collections import defaultdict
 
 N, K = map(int, input().split())
 C = list(map(int, input().split()))
-dict = collections.defaultdict(int)
-len_dict = 0
-now = 0
-mx = 0
 
-for i in range(N):
-  if len_dict >= K:
-    dict[C[i-K]] -= 1
-    if dict[C[i-K]] == 0:
-      now -= 1
+now_c = defaultdict(int)
+max_cnt = 0
+cnt = 0
+
+for i in range(K):
+  now_c[C[i]] += 1
+  if now_c[C[i]] == 1:
+    max_cnt += 1
+    cnt += 1
+
+for i in range(N - K):
+  leave_c = C[i]
+  add_c = C[i + K]
   
-  if dict[C[i]] == 0:
-    now += 1
-  dict[C[i]] += 1
-  len_dict += 1
+  now_c[leave_c] -= 1
+  if now_c[leave_c] == 0:
+    cnt -= 1
+  
+  now_c[add_c] += 1
+  if now_c[add_c] == 1:
+    cnt += 1
+  
+  max_cnt = max(cnt, max_cnt)
 
-  mx = max(mx, now)
-
-print(mx)
+print(max_cnt)
