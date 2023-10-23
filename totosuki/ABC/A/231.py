@@ -1,2 +1,1 @@
-D = int(input())
-print(D / 100)
+print(int(input())/100)

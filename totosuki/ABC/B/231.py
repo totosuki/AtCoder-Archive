@@ -1,13 +1,4 @@
-import sys, collections
-input = sys.stdin.buffer.readline
-
-N = int(input())
-S = [input().decode().strip() for _ in range(N)]
-mx_S = str()
-cnt = dict(collections.Counter(S))
-
-for k, i in cnt.items():
-  if i == max(cnt.values()):
-    mx_S = k
-
-print(mx_S)
+from collections import*
+D=defaultdict(int)
+exec("D[input()]+=1;"*int(input()))
+print(sorted(D.items(),key=lambda x:-x[1])[0][0])
