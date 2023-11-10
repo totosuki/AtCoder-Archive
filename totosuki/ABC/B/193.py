@@ -1,15 +1,9 @@
-import sys
-input = sys.stdin.buffer.readline
-
 N = int(input())
-rslt = set()
+rslt = float("inf")
 
 for _ in range(N):
-  A, P, X = map(int, input().split())
-  if X > A:
-    rslt.add(P)
+  a, p, x = map(int, input().split())
+  if x > a:
+    rslt = min(p, rslt)
 
-if rslt:
-  print(min(rslt))
-else:
-  print(-1)
+print(rslt if rslt != float("inf") else -1 )
