@@ -1,4 +1,4 @@
-{
+{ 
   "map(int, input().split())": {
     "scope": "python",
     "prefix": "haha",
@@ -33,5 +33,15 @@
     "scope": "python",
     "prefix": "[a[a",
     "body": "def hello_my_name_is_torippppppy_and_this_is_my_first_function_that_can_print_your_original_text_the_name_is_lets_print_the_text_that_specified_at_the_first_argment_of_this_function(text_that_you_want_to_print: str):\n  # your original text that specified at the first argment of this function will print at here\n  print(text_that_you_want_to_print)"
+  },
+  "main()": {
+    "scope": "python",
+    "prefix": "launch",
+    "body": "def main():\n\t$1\n\nmain()"
+  },
+  "defaultdict": {
+    "scope": "python",
+    "prefix": "dd",
+    "body": "from collections import defaultdict"
   }
 }
