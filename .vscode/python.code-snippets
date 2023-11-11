@@ -43,5 +43,23 @@
     "scope": "python",
     "prefix": "dd",
     "body": "from collections import defaultdict"
+  },
+  "binary_search": {
+    "scope": "python",
+    "prefix": "binary_search",
+    "body": [
+      "def check(mid, X, A):",
+      "\tpass\n"
+      "def binary_search(N, X, A):",
+      "\tleft = $1",
+      "\tright = $2",
+      "\twhile right - left > 1:",
+      "\t\tmid = (left + right) // 2",
+      "\t\tif check(mid, X, A):",
+      "\t\t\tright = mid",
+      "\t\telse:",
+      "\t\t\tleft = mid",
+      "\treturn right"
+    ]
   }
 }
