@@ -1,18 +1,18 @@
-import sys
-input = sys.stdin.buffer.readline
+def binary_search(N, X, A):
+  left = -1
+  right = N
+  while right - left > 1:
+    mid = (left + right) // 2
+    if A[mid] >= X:
+      right = mid
+    else:
+      left = mid
+  return right
 
-N, X = map(int, input().split())
-A = [0] + list(map(int, input().split()))
+def main():
+  N, X = map(int, input().split())
+  A = list(map(int, input().split()))
+  rslt = binary_search(N, X, A)
+  print(rslt + 1)
 
-def binary_search(x):
-  L = 1
-  R = N
-  while L <= R:
-    ans = (L + R) // 2
-    if x < A[ans]: R = ans - 1
-    if x == A[ans]: return ans
-    if x > A[ans]: L = ans + 1
-  return -1
-
-ans = binary_search(X)
-print(ans)
+main()
