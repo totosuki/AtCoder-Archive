@@ -37,7 +37,7 @@
   "main()": {
     "scope": "python",
     "prefix": "launch",
-    "body": "def main():\n\t$1\n\nmain()"
+    "body": "def main():\n\t\n\nmain()"
   },
   "defaultdict": {
     "scope": "python",
@@ -48,14 +48,14 @@
     "scope": "python",
     "prefix": "binary_search",
     "body": [
-      "def check(mid, X, A):",
+      "def check(mid, A, X):",
       "\tpass\n"
-      "def binary_search(N, X, A):",
-      "\tleft = $1",
-      "\tright = $2",
+      "def binary_search(A, X):",
+      "\tleft = ",
+      "\tright = ",
       "\twhile right - left > 1:",
       "\t\tmid = (left + right) // 2",
-      "\t\tif check(mid, X, A):",
+      "\t\tif check(mid, A, X):",
       "\t\t\tright = mid",
       "\t\telse:",
       "\t\t\tleft = mid",
