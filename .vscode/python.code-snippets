@@ -61,5 +61,51 @@
       "\t\t\tleft = mid",
       "\treturn right"
     ]
+  },
+  "dp_base": {
+    "scope": "python",
+    "prefix": "dp_base",
+    "body": [
+      "def dynamic_programming(N, A, B):",
+      "\tdp = [0] * (N+1)",
+      "\tdp[2] = A[2]",
+      "\tfor i in range(3, N+1):",
+      "\t\tdp[i] = min(dp[i-1]+A[i], dp[i-2]+B[i])",
+      "\treturn dp"
+    ]
+  },
+  "dp_root": {
+    "scope": "python",
+    "prefix": "dp_root",
+    "body": [
+      "def dp_root(N, A, B, dp):",
+      "\troot = [N]",
+      "\ti = N",
+      "\twhile i > 1:",
+      "\t\tif dp[i-1] + A[i] == dp[i]:",
+      "\t\t\troot.append(i-1)",
+      "\t\t\ti -= 1",
+      "\t\telse:",
+      "\t\t\troot.append(i-2)",
+      "\t\t\ti -= 2",
+      "\treturn root"
+    ]
+  },
+  "dp_sum": {
+    "socpe": "python",
+    "prefix": "dp_sum",
+    "body": [
+      "def dynamic_programming(N, S, A):",
+      "\tdp = [[False]*(S+1) for _ in range(N+1)]",
+      "\tdp[0][0] = True",
+      "\tfor i in range(1, N+1):",
+      "\t\ta = A[i]",
+      "\t\tfor j in range(S+1):",
+      "\t\t\tif j < a:",
+      "\t\t\t\tdp[i][j] = dp[i-1][j]",
+      "\t\t\telse:",
+      "\t\t\t\tdp[i][j] = dp[i-1][j] or dp[i-1][j-a]",
+      "\treturn dp"
+    ]
   }
 }
