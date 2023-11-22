@@ -1,20 +1,23 @@
-from numpy import ones
 import sys
+import pickle
 
-def eratosthenes(N : int):
-  is_prime = ones(N//2, dtype = bool)
-  is_prime[0] = 0
+def eratosthenes(N):
+  is_prime = [1] * (N//2)
+  is_prime[0] = False
   sqrt_p = (int(N**0.5) + 1) // 2
   for i in range(1, sqrt_p):
-    if not is_prime[i]: continue
+    if not is_prime: continue
     p = 2 * i + 1
-    is_prime[p*p//2::p] = 0
+    for q in range(p*p//2, len(is_prime), p):
+      is_prime[q] = 0
   return is_prime
 
 def main():
   input = sys.stdin.buffer.readline
+  with open("./prime.pickle", "rb") as f:
+    li = pickle.load(f)
   Q = int(input())
-  prime_list = eratosthenes(300000)
+
   for _ in range(Q):
     X = int(input())
     if X == 2:
@@ -23,6 +26,11 @@ def main():
       print("No")
     else:
       X //= 2
-      print("Yes" if prime_list[X] else "No")
+      print("Yes") if li[X] else print("No")
 
-main()
+if sys.argv[-1] == "ONLINE_JUDGE":
+  prime_list = eratosthenes(300000)
+  with open("./prime.pickle", "wb") as f:
+    pickle.dump(prime_list, f)
+else:
+  main()
