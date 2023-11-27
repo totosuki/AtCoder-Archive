@@ -107,5 +107,39 @@
       "\t\t\t\tdp[i][j] = dp[i-1][j] or dp[i-1][j-a]",
       "\treturn dp"
     ]
+  },
+  "FenwickTree": {
+    "scope": "python",
+    "prefix": "FenwickTree",
+    "body": [
+      "class FenwickTree:"
+      "\tdef __init__(self, n):"
+      "\t\tself._n = n"
+      "\t\tself.data = [0] * n"
+      "\t"
+      "\tdef add(self, id: int, x: int):"
+      "\t\t\"\"\"idは 0-indexed\"\"\""
+      "\t\tif 0 <= id < self._n:"
+      "\t\t\tid += 1 # 0-indexed -> 1-indexed"
+      "\t\t\twhile id <= self._n:"
+      "\t\t\t\tself.data[id - 1] += x # data を更新"
+      "\t\t\t\tid += id & -id # id に LSB(id) を加算"
+      "\t"
+      "\tdef sum(self, left: int, right: int) -> int:"
+      "\t\t\"\"\""
+      "\t\t左閉右開の半開区間 [l, r) の部分和を出力する\\n"
+      "\t\tleft, right ともに 0-indexed"
+      "\t\t\"\"\""
+      "\t\tsm = 0 # sum"
+      "\t\tif 0 <= left < right <= self._n:"
+      "\t\t\treturn self._sum(right) - self._sum(left)"
+      "\t"
+      "\tdef _sum(self, right : int) -> int:"
+      "\t\tsm = 0 # sum"
+      "\t\twhile right > 0:"
+      "\t\t\tsm += self.data[right - 1]"
+      "\t\t\tright -= right & -right # right から LSB(right) を減算"
+      "\t\treturn sm"
+    ]
   }
 }
