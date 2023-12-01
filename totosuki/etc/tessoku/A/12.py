@@ -1,22 +1,23 @@
-import sys
-input = sys.stdin.buffer.readline
+def check(mid, A):
+  ans = 0
+  for a in A: ans += mid // a
+  return ans
 
-N, K = map(int, input().split())
-A = [0] + list(map(int, input().split()))
+def binary_search(N, X, A):
+  left = -1
+  right = 10**9 + 5
+  while right - left > 1:
+    mid = (right + left) // 2
+    if check(mid, A) >= X:
+      right = mid
+    else:
+      left = mid
+  return right
 
-def check(x):
-  sm = 0
-  for i in range(1, N+1): sm += x // A[i]
-  if sm >= K: return True
-  else: return False
+def main():
+  N, K = map(int, input().split())
+  A = list(map(int, input().split()))
+  rslt = binary_search(N, K, A)
+  print(rslt)
 
-L = 1
-R = 10**9
-
-while L < R:
-  M = (L + R) // 2
-  ans = check(M)
-  if ans == False: L = M + 1
-  if ans == True: R = M
-
-print(L)
+main()

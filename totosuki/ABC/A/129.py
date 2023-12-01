@@ -1,3 +1,7 @@
 P, Q, R = map(int, input().split())
-dist = sorted([P, Q, R])
-print(dist[0] + dist[1])
+
+answer = 5000
+
+answer = min(5000, P+Q, Q+R, R+P)
+
+print(answer)

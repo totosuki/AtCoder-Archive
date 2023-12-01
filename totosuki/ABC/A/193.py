@@ -1,2 +1,3 @@
 A, B = map(int, input().split())
-print(((A-B) / A) * 100)
+C = A - B
+print(C / A * 100)

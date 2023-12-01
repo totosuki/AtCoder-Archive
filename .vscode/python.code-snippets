@@ -1,4 +1,4 @@
-{
+{ 
   "map(int, input().split())": {
     "scope": "python",
     "prefix": "haha",
@@ -33,5 +33,298 @@
     "scope": "python",
     "prefix": "[a[a",
     "body": "def hello_my_name_is_torippppppy_and_this_is_my_first_function_that_can_print_your_original_text_the_name_is_lets_print_the_text_that_specified_at_the_first_argment_of_this_function(text_that_you_want_to_print: str):\n  # your original text that specified at the first argment of this function will print at here\n  print(text_that_you_want_to_print)"
+  },
+  "main()": {
+    "scope": "python",
+    "prefix": "launch",
+    "body": "def main():\n\t\n\nmain()"
+  },
+  "defaultdict": {
+    "scope": "python",
+    "prefix": "dd",
+    "body": "from collections import defaultdict"
+  },
+  "binary_search": {
+    "scope": "python",
+    "prefix": "binary_search",
+    "body": [
+      "def check(mid, A, X):",
+      "\tpass\n"
+      "def binary_search(A, X):",
+      "\tleft = ",
+      "\tright = ",
+      "\twhile right - left > 1:",
+      "\t\tmid = (left + right) // 2",
+      "\t\tif check(mid, A, X):",
+      "\t\t\tright = mid",
+      "\t\telse:",
+      "\t\t\tleft = mid",
+      "\treturn right"
+    ]
+  },
+  "dp_base": {
+    "scope": "python",
+    "prefix": "dp_base",
+    "body": [
+      "def dynamic_programming(N, A, B):",
+      "\tdp = [0] * (N+1)",
+      "\tdp[2] = A[2]",
+      "\tfor i in range(3, N+1):",
+      "\t\tdp[i] = min(dp[i-1]+A[i], dp[i-2]+B[i])",
+      "\treturn dp"
+    ]
+  },
+  "dp_root": {
+    "scope": "python",
+    "prefix": "dp_root",
+    "body": [
+      "def dp_root(N, A, B, dp):",
+      "\troot = [N]",
+      "\ti = N",
+      "\twhile i > 1:",
+      "\t\tif dp[i-1] + A[i] == dp[i]:",
+      "\t\t\troot.append(i-1)",
+      "\t\t\ti -= 1",
+      "\t\telse:",
+      "\t\t\troot.append(i-2)",
+      "\t\t\ti -= 2",
+      "\treturn root"
+    ]
+  },
+  "dp_sum": {
+    "socpe": "python",
+    "prefix": "dp_sum",
+    "body": [
+      "def dynamic_programming(N, S, A):",
+      "\tdp = [[False]*(S+1) for _ in range(N+1)]",
+      "\tdp[0][0] = True",
+      "\tfor i in range(1, N+1):",
+      "\t\ta = A[i]",
+      "\t\tfor j in range(S+1):",
+      "\t\t\tif j < a:",
+      "\t\t\t\tdp[i][j] = dp[i-1][j]",
+      "\t\t\telse:",
+      "\t\t\t\tdp[i][j] = dp[i-1][j] or dp[i-1][j-a]",
+      "\treturn dp"
+    ]
+  },
+  "FenwickTree": {
+    "scope": "python",
+    "prefix": "FenwickTree",
+    "body": [
+      "class FenwickTree:"
+      "\tdef __init__(self, n):"
+      "\t\tself._n = n"
+      "\t\tself.data = [0] * n"
+      "\t"
+      "\tdef add(self, id: int, x: int):"
+      "\t\t\"\"\"idは 0-indexed\"\"\""
+      "\t\tif 0 <= id < self._n:"
+      "\t\t\tid += 1 # 0-indexed -> 1-indexed"
+      "\t\t\twhile id <= self._n:"
+      "\t\t\t\tself.data[id - 1] += x # data を更新"
+      "\t\t\t\tid += id & -id # id に LSB(id) を加算"
+      "\t\telse:"
+      "\t\t\traise ValueError(\"id が  0 <= id < self._n  ではありません。\")"
+      "\t"
+      "\tdef sum(self, left: int, right: int) -> int:"
+      "\t\t\"\"\""
+      "\t\t左閉右開の半開区間 [l, r) の部分和を出力する\\n"
+      "\t\tleft, right ともに 0-indexed"
+      "\t\t\"\"\""
+      "\t\tsm = 0 # sum"
+      "\t\tif 0 <= left < right <= self._n:"
+      "\t\t\treturn self._sum(right) - self._sum(left)"
+      "\t\telse:"
+      "\t\t\traise ValueError(\"left, right が  0 <= left < right <= self._n  ではありません。\")"
+      "\t"
+      "\tdef _sum(self, right : int) -> int:"
+      "\t\tsm = 0 # sum"
+      "\t\twhile right > 0:"
+      "\t\t\tsm += self.data[right - 1]"
+      "\t\t\tright -= right & -right # right から LSB(right) を減算"
+      "\t\treturn sm"
+    ]
+  },
+  "UnionFind": {
+    "scope": "python",
+    "prefix": "UnionFind",
+    "body": [
+      "from collections import defaultdict",
+      "",
+      "class UnionFind():",
+      "\tdef __init__(self, n):",
+      "\t\tself.n = n",
+      "\t\tself.parents = [-1] * n",
+      "\t",
+      "\tdef find(self, x):",
+      "\t\tif self.parents[x] < 0:",
+      "\t\t\treturn x",
+      "\t\telse:",
+      "\t\t\tself.parents[x] = self.find(self.parents[x])",
+      "\t\t\treturn self.parents[x]",
+      "\t",
+      "\tdef union(self, x, y):",
+      "\t\tx = self.find(x)",
+      "\t\ty = self.find(y)",
+      "\t\t",
+      "\t\tif x == y:",
+      "\t\t\treturn",
+      "\t\t",
+      "\t\tif self.parents[x] > self.parents[y]:",
+      "\t\t\tx, y = y, x",
+      "\t\t",
+      "\t\tself.parents[x] += self.parents[y]",
+      "\t\tself.parents[y] = x",
+      "\t",
+      "\tdef size(self, x):",
+      "\t\treturn -self.parents[self.find(x)]",
+      "\t\t\t",
+      "\tdef same(self, x, y):",
+      "\t\treturn self.find(x) == self.find(y)",
+      "\t",
+      "\tdef members(self, x):",
+      "\t\troot = self.find(x)",
+      "\t\treturn [i for i in range(self.n) if self.find(i) == root]",
+      "\t",
+      "\tdef roots(self):",
+      "\t\treturn [i for i, x in enumerate(self.parents) if x < 0]",
+      "\t",
+      "\tdef group_count(self):",
+      "\t\treturn len(self.roots())",
+      "\t",
+      "\tdef all_group_members(self):",
+      "\t\tgroup_members = defaultdict(list)",
+      "\t\tfor member in range(self.n):",
+      "\t\t\tgroup_members[self.find(member)].append(member)",
+      "\t\treturn group_members",
+      "\t",
+      "\tdef __str__(self):",
+      "\t\treturn '\\n'.join(f'{r}: {m}' for r, m in self.all_group_members().items())"
+    ]
+  },
+  "SegmentTree": {
+    "scope": "python",
+    "prefix": "SegmentTree",
+    "body": [
+      "class SegmentTree:",
+      "\tdef __init__(self, n:int, op, e, v:list = None):",
+      "\t\tself._n = n\t # 配列の長さ",
+      "\t\tself._op = op # 演算（二項演算）",
+      "\t\tself._e = e\t # 単位元",
+      "\t\tself._log :int = (n - 1).bit_length() # 2 ** _log >= n となる最小の整数",
+      "\t\tself._size:int = 2 ** self._log\t\t\t # 単位元が配列に入ったときの長さ",
+      "\t\tself._data:list = [self._e()] * (2 * self._size) # セグメント木",
+      "\t\tif v != None:",
+      "\t\t\t# 葉に対象の列を格納",
+      "\t\t\tfor i in range(self._n):",
+      "\t\t\t\tself._data[self._size + i] = v[i]",
+      "\t\t\t# 葉に近い場所から順に更新",
+      "\t\t\tfor i in range(self._size-1, 0, -1): # (0, self._size-1] のため",
+      "\t\t\t\tself._data[i] = self._op(self._data[i << 1], self._data[i << 1 | 1])",
+      "\t",
+      "\tdef set(self, p, x):",
+      "\t\t\"\"\"更新クエリ：配列[p] を x に更新\"\"\"",
+      "\t\tif 0 <= p < self._n:",
+      "\t\t\tp += self._size # 葉に移動",
+      "\t\t\tself._data[p] = x",
+      "\t\t\t# 関連する場所を更新",
+      "\t\t\twhile p:",
+      "\t\t\t\tself._data[p >> 1] = self._op(self._data[p], self._data[p ^ 1]) # p^1 == 2**0 を反転",
+      "\t\t\t\tp >>= 1",
+      "\t\telse:",
+      "\t\t\traise ValueError(\"p が 0 <= p < self._n ではありません。\")",
+      "\t",
+      "\tdef product(self, l, r):",
+      "\t\t\"\"\"",
+      "\t\t取得クエリ：区間 [l, r) の総積を取得\\n",
+      "\t\tl == r の場合は単位元を返す",
+      "\t\t\"\"\"",
+      "\t\tif 0 == l == r == 0:",
+      "\t\t\traise ValueError(\"l, r が 0 == l == r == 0 です。\")",
+      "\t\tif 0 <= l <= r <= self._n:",
+      "\t\t\tleft_rslt, right_rslt = self._e(), self._e() # 左右の結果を初期化",
+      "\t\t\tl += self._size",
+      "\t\t\tr += self._size",
+      "\t\t\t# 未計算の区間が無くなるまで",
+      "\t\t\twhile l < r:",
+      "\t\t\t\t# l が右子ノードなら",
+      "\t\t\t\tif l & 1:",
+      "\t\t\t\t\tleft_rslt = self._op(left_rslt, self._data[l])",
+      "\t\t\t\t\tl += 1 # 親ノードを右隣に変更",
+      "\t\t\t\t# (r-1 が左子ノードなら) == (r が右子ノードなら)",
+      "\t\t\t\tif r & 1:",
+      "\t\t\t\t\tright_rslt = self._op(self._data[r-1], right_rslt) # 交換法則が常に成り立たない為",
+      "\t\t\t\t\tr -= 1 # 親ノードを左隣に変更",
+      "\t\t\t\t# 親に移動",
+      "\t\t\t\tl >>= 1",
+      "\t\t\t\tr >>= 1",
+      "\t\t\treturn self._op(left_rslt, right_rslt)",
+      "\t\telse:",
+      "\t\t\traise ValueError(\"l, r が 0 <= l <= r <= self._n ではありません。\")",
+      "\t",
+      "\tdef all_product(self):",
+      "\t\t\"\"\"全要素の総積を取得\"\"\"",
+      "\t\treturn self._data[1]",
+      "\t",
+      "\tdef get(self, p):",
+      "\t\t\"\"\"セグメント木の配列[p]を取得\"\"\"",
+      "\t\tif 0 <= p < self._n:",
+      "\t\t\treturn self._data[p + self._size]",
+      "\t\telse:",
+      "\t\t\traise ValueError(\"p が 0 <= p < self._n ではありません。\")",
+      "\t",
+      "\tdef max_right(self, l, f):",
+      "\t\t\"\"\"",
+      "\t\t右探索クエリ：f(op(left,right)) = True となる最大の right を取得\\n",
+      "\t\tf(self._e()) = True かつ 0 <= left <= self._n",
+      "\t\t\"\"\"",
+      "\t\tif not f(self._e()): raise ValueError(\"f(self._e()) が False になってます。\")",
+      "\t\tif 0 <= l < self._n:",
+      "\t\t\tright = l + self._size # 葉に移動",
+      "\t\t\trslt = self._e()",
+      "\t\t\twhile True:",
+      "\t\t\t\twhile right % 2 == 0: right >>= 1 # 右ノードになるまで",
+      "\t\t\t\tif not f(self._op(rslt, self._data[right])):",
+      "\t\t\t\t\t# ノード right が覆う範囲を二分探索",
+      "\t\t\t\t\twhile right < self._size:",
+      "\t\t\t\t\t\tright <<= 1 # 左子ノードに移動",
+      "\t\t\t\t\t\tif f(self._op(rslt, self._data[right])):",
+      "\t\t\t\t\t\t\trslt = self._op(rslt, self._data[right])",
+      "\t\t\t\t\t\t\tright += 1 # f = True ならば右隣のノードに移動",
+      "\t\t\t\t\treturn right - self._size # right は境界の False 側で終わる",
+      "\t\t\t\telse:",
+      "\t\t\t\t\trslt = self._op(rslt, self._data[right])",
+      "\t\t\t\t\tright += 1 # f = True ならば右隣のノードに移動",
+      "\t\t\t\t\tif right & -right == right: return self._n # f(op(l, n)) が確定",
+      "\t\telif l == self._n: return self._n",
+      "\t\telse: raise ValueError(\"l が 0 <= l <= self._n ではありません。\")",
+      "\t",
+      "\tdef min_left(self, r, f):",
+      "\t\t\"\"\"",
+      "\t\t左探索クエリ：f(op(left,right)) = True となる最小の left を取得\\n",
+      "\t\tf(self._e()) = True かつ 0 <= right <= self._n",
+      "\t\t\"\"\"",
+      "\t\tif not f(self._e()): raise ValueError(\"f(self._e()) が False になってます。\")",
+      "\t\tif 0 < r <= self._n:",
+      "\t\t\tleft = r + self._size",
+      "\t\t\trslt = self._e()",
+      "\t\t\twhile True:",
+      "\t\t\t\tleft -= 1 # 右開区間 [left, r) のため先にデクリメント",
+      "\t\t\t\twhile left > 1 and left % 2: left >>= 1 # left が左子ノードになるまで",
+      "\t\t\t\tif not f(self._op(self._data[left], rslt)):",
+      "\t\t\t\t\t# ノード left が覆う範囲を二分探索",
+      "\t\t\t\t\twhile left < self._size:",
+      "\t\t\t\t\t\tleft = 2 * left + 1 # 右子ノードに移動",
+      "\t\t\t\t\t\tif f(self._op(self._data[left], rslt)):",
+      "\t\t\t\t\t\t\trslt = self._op(self._data[left], rslt)",
+      "\t\t\t\t\t\t\tleft -= 1 # f = True ならば左隣のノードに移動",
+      "\t\t\t\t\treturn left + 1 - self._size # left は境界の False 側で終わる",
+      "\t\t\t\telse:",
+      "\t\t\t\t\trslt = self._op(self._data[left], rslt)",
+      "\t\t\t\t\tif left & -left == left: return 0 # 各層の左端に来たら left = 0 となる",
+      "\t\telif r == 0: return 0",
+      "\t\telse: raise ValueError(\"r が 0 <= r <= self._n ではありません。\")"
+    ]
   }
 }

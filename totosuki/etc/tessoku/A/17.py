@@ -1,31 +1,31 @@
-import sys
-input = sys.stdin.buffer.readline
+def dynamic_programming(N, A, B):
+  dp = [0] * (N+1)
+  dp[2] = A[2]
+  for i in range(3, N+1):
+    dp[i] = min(dp[i-1]+A[i], dp[i-2]+B[i])
+  return dp
 
-N = int(input())
-A = [0,0] + list(map(int, input().split()))
-B = [0,0,0] + list(map(int, input().split()))
+def dp_root(N, A, B, dp):
+  root = [N]
+  i = N
+  while i > 1:
+    if dp[i-1] + A[i] == dp[i]:
+      root.append(i-1)
+      i -= 1
+    else:
+      root.append(i-2)
+      i -= 2
+  return root
 
-dp = [0] * (N + 1)
-dp[2] = A[2]
+def main():
+  N = int(input())
+  A = list(map(int, input().split()))
+  B = list(map(int, input().split()))
+  A = [0, 0] + A
+  B = [0, 0, 0] + B
+  dp = dynamic_programming(N, A, B)
+  root = dp_root(N, A, B, dp)
+  print(len(root))
+  print(*reversed(root))
 
-for i in range(3, N+1):
-  dp[i] = min(dp[i-1] + A[i], dp[i-2] + B[i])
-
-place = N
-rslt = []
-
-while True:
-  rslt.append(place)
-  
-  if place == 1:
-    break
-  
-  if (dp[place-1] + A[place] == dp[place]):
-    place -= 1
-  else:
-    place -= 2
-
-rslt.reverse()
-
-print(len(rslt))
-print(*rslt)
+main()

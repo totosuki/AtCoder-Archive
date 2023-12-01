@@ -1,11 +1,17 @@
-N = int(input())
-A = list(map(int, input().split()))
-B = list(map(int, input().split()))
+def dynamic_programming(N, A, B):
+  dp = [0] * (N+1)
+  dp[2] = A[2]
+  for i in range(3, N+1):
+    dp[i] = min(dp[i-1]+A[i], dp[i-2]+B[i])
+  return dp
 
-dp = [0] * N
-dp[1] = A[1-1]
+def main():
+  N = int(input())
+  A = list(map(int, input().split()))
+  B = list(map(int, input().split()))
+  A = [0, 0] + A
+  B = [0, 0, 0] + B
+  dp = dynamic_programming(N, A, B)
+  print(dp[N])
 
-for i in range(2, N):
-  dp[i] = min(dp[i-1] + A[i-1], dp[i-2] + B[i-2])
-
-print(dp[N-1])
+main()
