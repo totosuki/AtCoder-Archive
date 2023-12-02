@@ -1,21 +1,13 @@
-import sys
-input = sys.stdin.buffer.readline
-
 N, K = map(int, input().split())
-A = list(map(int, input().split()))
-R = [0] * N
-rslt = 0
+A = [0] + list(map(int, input().split())) + [0]
 
-for i in range(N-1):
-  if i == 0:
-    R[i] = 0
-  else:
-    R[i] = R[i-1]
-  
-  while R[i] < N-1 and A[R[i]+1] - A[i] <= K:
-    R[i] += 1
+cnt = 0
+right = 1
 
-for i in range(N-1):
-  rslt += R[i] - i
+for left in range(1, N):
+  while A[right+1] - A[left] <= K and right < N:
+    right += 1
+    if right == N: break
+  cnt += right - left
 
-print(rslt)
+print(cnt)
