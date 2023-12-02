@@ -1,22 +1,15 @@
-def main():
-  N, K = map(int, input().split())
-  A = [0] + list(map(int, input().split()))
-  cnt = 0
-  sm = A[1]
-  right = 1
-  for i in range(1, N+1):
-    if A[i] <= K: cnt += 1
-  for left in range(1, N):
-    cnt += right - left
-    if right == N: break
-    while True:
-      if (sm + A[right+1]) <= K:
-        cnt += 1
-        sm += A[right+1]
-        right += 1
-      if right == N: break
-      if (sm + A[right+1]) > K: break
-    sm -= A[left]
-  print(cnt)
+N, K = map(int, input().split())
+A = [0] + list(map(int, input().split()))
 
-main()
+cnt = 0
+right = 1
+total = 0
+
+for left in range(1, N+1):
+  while right < N+1 and total + A[right] <= K:
+    total += A[right]
+    right += 1
+  total -= A[left]
+  cnt += right - left
+
+print(cnt)
