@@ -29,6 +29,14 @@
     "prefix": "yaya",
     "body": "input().decode().rstrip()"
   },
+  "Visual Print": {
+    "scope": "python",
+    "prefix": "visual",
+    "body": [
+      "from pandas import DataFrame",
+      "print(DataFrame(data = $1))"
+    ]
+  }
   "hello_my_name_is_toripppppy": {
     "scope": "python",
     "prefix": "[a[a",
