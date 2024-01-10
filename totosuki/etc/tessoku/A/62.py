@@ -1,24 +1,29 @@
-import sys; from collections import defaultdict
-input = sys.stdin.buffer.readline
+import sys
+from collections import defaultdict
 
 sys.setrecursionlimit(10**9)
 
 N, M = map(int, input().split())
-graph = defaultdict(list)
+G = defaultdict(list)
 
 for _ in range(M):
-  A, B = map(lambda x: int(x) - 1, input().split())
-  graph[A].append(B)
-  graph[B].append(A)
+  A, B = map(int, input().split())
+  G[A].append(B)
+  G[B].append(A)
 
-ok = [False] * (N)
+seen = [False] * (N+1)
+seen[0] = True
 
-def dfs(now: int):
-  ok[now] = True
-  for ne in graph[now]:
-    if ok[ne] == False:
-      dfs(ne)
+def dfs(k):
+  seen[k] = True
+  for next in G[k]:
+    if not seen[next]:
+      dfs(next)
   return
-dfs(0)
 
-print("The graph is not connected.") if False in ok else print("The graph is connected.")
+dfs(1)
+
+if False in seen:
+  print("The graph is not connected.")
+else:
+  print("The graph is connected.")
