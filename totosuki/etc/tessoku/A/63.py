@@ -1,4 +1,4 @@
-from collections import defaultdict
+from collections import defaultdict, deque
 
 N, M = map(int, input().split())
 G = defaultdict(list)
@@ -8,22 +8,18 @@ for _ in range(M):
   G[A].append(B)
   G[B].append(A)
 
-nexts = [1]
-ans = [-1] * (N+1)
-ans[1] = 0
+que = deque([1])
 seen = [False] * (N+1)
 seen[1] = True
-dist = 0
+ans = [-1] * (N+1)
+ans[1] = 0
 
-while nexts:
-  dist += 1
-  nows = nexts.copy()
-  nexts = []
-  for now in nows:
-    for next in G[now]:
-      if not seen[next]:
-        seen[next] = True
-        nexts.append(next)
-        ans[next] = dist
+while que:
+  now = que.pop()
+  for next in G[now]:
+    if not seen[next]:
+      que.appendleft(next)
+      seen[next] = True
+      ans[next] = ans[now] + 1
 
 [print(ans[i]) for i in range(1, N+1)]
