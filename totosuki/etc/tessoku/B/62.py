@@ -13,17 +13,19 @@ for _ in range(M):
 
 seen = [False] * (N+1)
 seen[0] = True
+route = [N]
 
-def dfs(k):
-  seen[k] = True
-  for next in G[k]:
+def dfs(now):
+  seen[now] = True
+  if now == N:
+    return N
+  for next in G[now]:
     if not seen[next]:
-      dfs(next)
+      if dfs(next) == N:
+        route.append(now)
+        return N
   return
 
 dfs(1)
-
-if False in seen:
-  print("The graph is not connected.")
-else:
-  print("The graph is connected.")
+route.reverse()
+print(*route)
