@@ -1,0 +1,10 @@
+const C = (require("fs").readFileSync("/dev/stdin", "utf8").trim().split("\n"));
+let C0 = C[0].split(" ");
+let C1 = C[1].split(" ");
+let C2 = C[2].split(" ");
+let C3 = C[3].split(" ");
+C0 = C0.reverse();
+C1 = C1.reverse();
+C2 = C2.reverse();
+C3 = C3.reverse();
+console.log(`${C3.join(" ")}\n${C2.join(" ")}\n${C1.join(" ")}\n${C0.join(" ")}`);
