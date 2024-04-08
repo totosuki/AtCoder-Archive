@@ -1,3 +1,5 @@
+from decimal import Decimal, ROUND_HALF_UP
+
 A, B = map(int, input().split())
-rslt = round(B / A, 3) + 0.000
-print("{:.3f}".format(rslt))
+ans = Decimal(B / A)
+print(ans.quantize(Decimal("0.000"), rounding = ROUND_HALF_UP))
