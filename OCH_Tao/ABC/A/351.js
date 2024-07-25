@@ -1,0 +1,2 @@
+const [A, B] = (require("fs").readFileSync("/dev/stdin", "utf8").trim().split("\n"));
+console.log(A.split(" ").map(x => parseInt(x, 10)).reduce((a, b) => a + b, 0) - B.split(" ").map(x => parseInt(x, 10)).reduce((a, b) => a + b, 0) + 1);

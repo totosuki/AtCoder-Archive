@@ -1,0 +1,2 @@
+const N = parseInt(require("fs").readFileSync("/dev/stdin", "utf8").trim().split("\n")[0], 10);
+console.log([...Array(N + 1).keys()].slice(1).filter(x => x % 3 !== 0 && x % 5 !== 0).reduce((a, b) => a + b, 0));

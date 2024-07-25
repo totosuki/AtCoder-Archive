@@ -1,0 +1,2 @@
+const [A, B, C, D] = require("fs").readFileSync("/dev/stdin", "utf8").trim().split("\n")[0].split(" ").map(BigInt);
+console.log([A * C, A * D, B * C, B * D].reduce((x, y) => x > y ? x : y).toString());
