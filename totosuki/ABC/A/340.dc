@@ -1,0 +1,12 @@
+[
+    lx l2 !<b
+] sa
+[
+    lx d n
+    [ ] P
+    l3 + sx
+    la x
+] sb
+? s3 s2 s1
+l1 sx
+la x
