@@ -1,1 +1,1 @@
-print(input().replace("ABC","_").replace("ARC","ABC").replace("_","ARC"))
+print(["ABC","ARC"][input()<'ARC'])
