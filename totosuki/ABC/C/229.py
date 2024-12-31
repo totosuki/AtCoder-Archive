@@ -1,21 +1,20 @@
-import sys
-input = sys.stdin.buffer.readline
-
 N, W = map(int, input().split())
-data = [list(map(int, input().split())) for _ in range(N)]
-data.sort(reverse = True)
-rslt = 0
+cheese = []
+for _ in range(N):
+    A, B = map(int, input().split())
+    cheese.append((A, B))
 
-for d in data:
-  A, B = d[0], d[1]
-  
-  if B > W:
-    rslt += A * W
-  else:
-    rslt += A * B
-  W -= B
-  
-  if W <= 0:
-    break
+cheese.sort(reverse = True)
+ans = 0
+cnt = 0
 
-print(rslt)
+for i in range(N):
+    A, B = cheese[i]
+    if cnt + B <= W:
+        ans += A * B
+        cnt += B
+    else:
+        ans += A * (W - cnt)
+        break
+
+print(ans)
