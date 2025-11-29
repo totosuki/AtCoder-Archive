@@ -1,44 +1,39 @@
-from collections import defaultdict, deque
+from collections import defaultdict
 
 N = int(input())
-U = []
-D = []
-L = []
-R = []
-# [cnt, id]
-tile = [[0]*2000 for _ in range(2000)]
-cloud = [[0]*2000 for _ in range(2000)]
+a = [[0]*2005 for _ in range(2005)]
+b = [[0]*2005 for _ in range(2005)]
+zero = 0
 ans = defaultdict(int)
 
+for kind in range(1, N+1):
+    u, d, l, r = map(int, input().split())
+    d += 1
+    r += 1
+    a[u][l] += 1
+    a[u][r] -= 1
+    a[d][l] -=1
+    a[d][r] += 1
+    b[u][l] += kind
+    b[u][r] -= kind
+    b[d][l] -= kind
+    b[d][r] += kind
 
-zero = deque([[i,j] for i in range(2000) for j in range(2000)])
-one = deque([])
+for i in range(2005):
+    for j in range(2005):
+        a[i][j] += a[i][j-1]
+        b[i][j] += b[i][j-1]
 
-for kind in range(N):
-    u, d, l, r = map(lambda x: int(x)-1, input().split())
-    U.append(u)
-    D.append(d)
-    L.append(l)
-    R.append(r)
+for i in range(2005):
+    for j in range(2005):
+        a[i][j] += a[i-1][j]
+        b[i][j] += b[i-1][j]
 
-    x = len(one)
-    for _ in range(x):
-        i, j = one.popleft()
-        if not (u <= i <= d and l <= j <= r):
-            one.append([i, j])
-        else:
-            ans[cloud[i][j]] -= 1
-            cloud[i][j] = -1
-    
-    x = len(zero)
-    for _ in range(x):
-        i, j = zero.popleft()
-        if not (u <= i <= d and l <= j <= r):
-            zero.append([i, j])
-        else:
-            one.append([i, j])
-            cloud[i][j] = kind
-            ans[kind] += 1
+for i in range(1, 2001):
+    for j in range(1, 2001):
+        zero += a[i][j] == 0
+        if a[i][j] == 1:
+            ans[b[i][j]] += 1
 
-for kind in range(N):
-    print(len(zero) + ans[kind])
+for kind in range(1, N+1):
+    print(zero + ans[kind])
