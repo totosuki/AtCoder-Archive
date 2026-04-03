@@ -1,0 +1,1 @@
+print("YNeos"[len(input())%5>0::2])
