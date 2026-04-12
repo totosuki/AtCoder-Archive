@@ -1,64 +1,50 @@
-import sys
-sys.setrecursionlimit(10**9)
+from collections import deque
 
 H, W = map(int, input().split())
-tile = [list(input()) for _ in range(H)]
+S = [input() for i in range(H)]
 
-# [U, R, D, L]
-seen = [[[False]*4 for _ in range(W)] for _ in range(H)]
-sy = sx = 0
-vec = [("U",-1,0),("R",0,1),("D",1,0),("L",0,-1)]
+for i, row in enumerate(S):
+    for j, c in enumerate(row):
+        if c == "S":
+            si, sj = i, j
+        elif c == "G":
+            gi, gj = i, j
 
-def dfs(now, route):
-    ny, nx, ri = now
-    is_o = tile[ny][nx] == "o"
-    is_x = tile[ny][nx] == "x"
+q = deque()
+INF = 1 << 60
+dist = [[[INF]*W for _ in range(H)] for _ in range(4)]
+ds = "RDLU"
+dij = [(0,1), (1,0), (0,-1), (-1,0)]
 
-    if route:
-        if not is_o and not is_x:
-            seen[ny][nx] = [True]*4
-        else:
-            seen[ny][nx][ri] = True
-    else:
-        seen[ny][nx] = [True]*4
+for di in range(4):
+    dist[di][si][sj] = 0
+    q.append((di, si, sj))
 
+prev = [[[None]*W for _ in range(H)] for _ in range(4)]
 
-    if tile[ny][nx] == "G": return [route]
+while q:
+    tdi, i, j = q.popleft()
 
-    
-    for i in range(4):
-        v, dy, dx = vec[i]
-        nxty, nxtx = ny+dy, nx+dx
-        
-        if not (0 <= nxty < H and 0 <= nxtx < W): continue
-        if seen[nxty][nxtx][i]: continue
-        if is_o and route != v: continue
-        if is_x and route == v: continue
-        if tile[nxty][nxtx] == "#": continue
-        
-        if ans := dfs((nxty, nxtx, i), v):
-            ans.append(route)
-            return ans
-    
-    return []
+    if (i, j) == (gi, gj):
+        print("Yes")
+        ans = []
+        while prev[tdi][i][j] is not None:
+            ans.append(ds[tdi])
+            i,j,tdi = prev[tdi][i][j]
+        ans.reverse()
+        print("".join(ans))
+        exit()
 
+    for ndi,(di,dj) in enumerate(dij):
+        ni,nj = i+di, j+dj
+        if not 0 <= ni < H: continue
+        if not 0 <= nj < W: continue
+        if S[ni][nj] == "#": continue
+        if S[i][j] == "o" and tdi != ndi: continue
+        if S[i][j] == "x" and tdi == ndi: continue
+        if dist[tdi][i][j] + 1 < dist[ndi][ni][nj]:
+            dist[ndi][ni][nj] = dist[tdi][i][j] + 1
+            q.append((ndi,ni,nj))
+            prev[ndi][ni][nj] = (i,j,tdi)
 
-# start を探す
-for i in range(H):
-    for j in range(W):
-        if tile[i][j] == "S":
-            sy = i; sx = j
-            break
-    else:
-        continue
-    break
-
-ans = dfs((sy, sx, -1), None)
-ans.reverse()
-if ans:
-    print("Yes")
-    print(*ans[1:], sep="")
-else:
-    print("No")
-
-# 各マスの出発した向きを保存
+print("No")
